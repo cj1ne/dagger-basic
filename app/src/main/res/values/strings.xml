@@ -2,4 +2,6 @@
     <string name="app_name">DaggerBasic</string>
     <string name="predict_age">Predict Age</string>
     <string name="log_history">Log History</string>
+    <string name="delete">Delete</string>
+    <string name="empty_log_history">Empty Log History</string>
 </resources>

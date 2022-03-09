@@ -1,5 +1,6 @@
 package com.glen.daggerbasic.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.glen.daggerbasic.R
 import com.glen.daggerbasic.databinding.ActivityMainBinding
+import com.glen.daggerbasic.presentation.loghistory.LogHistoryActivity
 import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +32,8 @@ class MainActivity : AppCompatActivity() {
 
                     }
                     MainViewModel.Event.OpenLogHistory -> {
-
+                        val intent = Intent(this@MainActivity, LogHistoryActivity::class.java)
+                        startActivity(intent)
                     }
                 }
             }

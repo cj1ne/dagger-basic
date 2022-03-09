@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DaggerBasic">
         <activity
+            android:name=".presentation.loghistory.LogHistoryActivity"
+            android:label="@string/log_history"
+            android:exported="false" />
+        <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true">
             <intent-filter>
