@@ -3,5 +3,8 @@
     <string name="predict_age">Predict Age</string>
     <string name="log_history">Log History</string>
     <string name="delete">Delete</string>
+    <string name="predict">Predict</string>
+    <string name="save_log">Save Log</string>
+    <string name="predict_hint_message">Type name to predict age</string>
     <string name="empty_log_history">Empty Log History</string>
 </resources>

@@ -37,7 +37,7 @@ abstract class AppDatabase : RoomDatabase() {
 interface LogDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(log: LogDTO)
+    suspend fun insert(logs: List<LogDTO>)
 
     @Query("DELETE FROM $TABLE_NAME")
     suspend fun deleteAll()

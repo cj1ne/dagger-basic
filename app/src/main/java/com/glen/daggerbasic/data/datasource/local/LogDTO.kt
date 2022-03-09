@@ -5,8 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.glen.daggerbasic.data.datasource.local.LogDTO.Companion.TABLE_NAME
 import com.glen.daggerbasic.domain.entity.Log
-import java.text.SimpleDateFormat
-import java.util.*
 
 @Entity(tableName = TABLE_NAME)
 data class LogDTO(
@@ -30,7 +28,7 @@ internal fun LogDTO.toEntity(): Log? {
         Log(
             id = id,
             message = message,
-            date = SimpleDateFormat("yyyy.MM.dd.", Locale.getDefault()).format(Date(date))
+            date = date
         )
     }
 }

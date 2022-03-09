@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.glen.daggerbasic.R
 import com.glen.daggerbasic.databinding.ActivityMainBinding
 import com.glen.daggerbasic.presentation.loghistory.LogHistoryActivity
+import com.glen.daggerbasic.presentation.predict.PredictActivity
 import kotlinx.coroutines.flow.collect
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
             viewModel.event.collect { event ->
                 when (event) {
                     MainViewModel.Event.OpenPredictAge -> {
-
+                        val intent = Intent(this@MainActivity, PredictActivity::class.java)
+                        startActivity(intent)
                     }
                     MainViewModel.Event.OpenLogHistory -> {
                         val intent = Intent(this@MainActivity, LogHistoryActivity::class.java)

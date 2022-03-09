@@ -9,8 +9,8 @@ class LogRepositoryImpl(
     private val logLocalDataSource: LogLocalDataSource
 ) : LogRepository {
 
-    override suspend fun addLog(message: String): Result<Unit> {
-        return logLocalDataSource.addLog(message)
+    override suspend fun addLog(logs: List<Log>): Result<Unit> {
+        return logLocalDataSource.addLog(logs)
     }
 
     override suspend fun clearLog(): Result<Unit> {
