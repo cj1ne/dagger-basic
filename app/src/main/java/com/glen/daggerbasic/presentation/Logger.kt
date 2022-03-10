@@ -3,8 +3,9 @@ package com.glen.daggerbasic.presentation
 import com.glen.daggerbasic.domain.entity.Log
 import com.glen.daggerbasic.domain.usecase.AddLogUseCase
 import java.util.*
+import javax.inject.Inject
 
-class Logger(private val addLogUseCase: AddLogUseCase) {
+class Logger @Inject constructor(private val addLogUseCase: AddLogUseCase) {
 
     private val messages = mutableListOf<Log>()
 

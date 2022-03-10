@@ -7,8 +7,9 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PredictAgeViewModel(
+class PredictAgeViewModel @Inject constructor(
     private val getPredictAgeUseCase: GetPredictAgeUseCase,
     private val logger: Logger
 ) : ViewModel() {
