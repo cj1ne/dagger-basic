@@ -1,6 +1,5 @@
 package com.glen.daggerbasic.data.datasource.local
 
-import android.content.Context
 import androidx.room.*
 import com.glen.daggerbasic.data.datasource.local.AppDatabase.Companion.DATABASE_VERSION
 import com.glen.daggerbasic.data.datasource.local.LogDTO.Companion.COLUMN_NAME_DATE
@@ -13,21 +12,6 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         const val DATABASE_NAME = "dagger-basic.db"
         const val DATABASE_VERSION = 1
-
-        private var instance: AppDatabase? = null
-
-        fun getInstance(context: Context): AppDatabase {
-            synchronized(AppDatabase::class) {
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDatabase::class.java,
-                        DATABASE_NAME
-                    ).build()
-                }
-                return instance!!
-            }
-        }
     }
 
     abstract fun logDao(): LogDao

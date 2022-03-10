@@ -1,9 +1,6 @@
 package com.glen.daggerbasic.di
 
 import android.content.Context
-import com.glen.daggerbasic.presentation.loghistory.LogHistoryActivity
-import com.glen.daggerbasic.presentation.predict.PredictActivity
-import com.glen.daggerbasic.presentation.predict.PredictAgeFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -27,6 +24,5 @@ interface AppComponent {
 
     // Type that can be retrieved from the graph
     fun predictComponent(): PredictComponent.Factory
-
-    fun inject(activity: LogHistoryActivity)
+    fun logHistoryComponent(): LogHistoryComponent.Factory
 }

@@ -22,7 +22,7 @@ class LogHistoryActivity : AppCompatActivity() {
     private val viewModel: LogHistoryViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
+        (application as MyApplication).appComponent.logHistoryComponent().create().inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_log_history)
         binding.viewModel = viewModel
