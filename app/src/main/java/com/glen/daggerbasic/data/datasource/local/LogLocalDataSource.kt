@@ -3,6 +3,7 @@ package com.glen.daggerbasic.data.datasource.local
 import com.glen.daggerbasic.domain.entity.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 interface LogLocalDataSource {
     suspend fun addLog(logs: List<Log>): Result<Unit>
@@ -10,7 +11,7 @@ interface LogLocalDataSource {
     fun getLogFlow(): Flow<List<Log>>
 }
 
-class LogLocalDataSourceImpl(
+class LogLocalDataSourceImpl @Inject constructor(
     private val logDao: LogDao
 ) : LogLocalDataSource {
 

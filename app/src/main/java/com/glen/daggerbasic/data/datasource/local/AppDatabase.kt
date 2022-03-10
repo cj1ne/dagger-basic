@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
-        private const val DATABASE_NAME = "dagger-basic.db"
+        const val DATABASE_NAME = "dagger-basic.db"
         const val DATABASE_VERSION = 1
 
         private var instance: AppDatabase? = null

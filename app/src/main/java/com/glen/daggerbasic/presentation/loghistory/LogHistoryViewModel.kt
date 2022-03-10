@@ -7,8 +7,9 @@ import com.glen.daggerbasic.domain.usecase.GetLogFlowUseCase
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LogHistoryViewModel(
+class LogHistoryViewModel @Inject constructor(
     private val getLogFlowUseCase: GetLogFlowUseCase,
     private val clearLogUseCase: ClearLogUseCase
 ) : ViewModel() {

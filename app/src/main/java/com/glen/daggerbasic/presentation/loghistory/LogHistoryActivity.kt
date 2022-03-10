@@ -6,36 +6,23 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glen.daggerbasic.R
-import com.glen.daggerbasic.data.datasource.local.AppDatabase
-import com.glen.daggerbasic.data.datasource.local.LogLocalDataSourceImpl
-import com.glen.daggerbasic.data.repository.LogRepositoryImpl
 import com.glen.daggerbasic.databinding.ActivityLogHistoryBinding
-import com.glen.daggerbasic.domain.usecase.ClearLogUseCase
-import com.glen.daggerbasic.domain.usecase.GetLogFlowUseCase
+import com.glen.daggerbasic.presentation.MyApplication
+import javax.inject.Inject
 
 class LogHistoryActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: ActivityLogHistoryBinding
-    private val viewModel: LogHistoryViewModel by viewModels {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                val database = AppDatabase.getInstance(this@LogHistoryActivity)
-                val dataSource = LogLocalDataSourceImpl(database.logDao())
-                val repository = LogRepositoryImpl(dataSource)
-                val getLogFlowUseCase = GetLogFlowUseCase(repository)
-                val clearLogUseCase = ClearLogUseCase(repository)
-                return LogHistoryViewModel(getLogFlowUseCase, clearLogUseCase) as T
-            }
-        }
-    }
+    private val viewModel: LogHistoryViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_log_history)
         binding.viewModel = viewModel

@@ -4,8 +4,9 @@ import com.glen.daggerbasic.data.datasource.local.LogLocalDataSource
 import com.glen.daggerbasic.domain.entity.Log
 import com.glen.daggerbasic.domain.repository.LogRepository
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class LogRepositoryImpl(
+class LogRepositoryImpl @Inject constructor(
     private val logLocalDataSource: LogLocalDataSource
 ) : LogRepository {
 
