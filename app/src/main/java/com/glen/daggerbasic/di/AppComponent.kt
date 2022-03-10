@@ -14,7 +14,8 @@ import javax.inject.Singleton
     DataSourceModule::class,
     LocalModule::class,
     RemoteModule::class,
-    ViewModelModule::class
+    ViewModelModule::class,
+    AppSubComponents::class
 ])
 interface AppComponent {
 
@@ -24,7 +25,8 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
+    // Type that can be retrieved from the graph
+    fun predictComponent(): PredictComponent.Factory
+
     fun inject(activity: LogHistoryActivity)
-    fun inject(activity: PredictActivity)
-    fun inject(fragment: PredictAgeFragment)
 }

@@ -8,10 +8,13 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.glen.daggerbasic.R
 import com.glen.daggerbasic.databinding.ActivityPredictBinding
+import com.glen.daggerbasic.di.PredictComponent
 import com.glen.daggerbasic.presentation.MyApplication
 import javax.inject.Inject
 
 class PredictActivity : AppCompatActivity() {
+
+    lateinit var predictComponent: PredictComponent
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -19,7 +22,8 @@ class PredictActivity : AppCompatActivity() {
     private val viewModel: PredictViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.inject(this)
+        predictComponent = (application as MyApplication).appComponent.predictComponent().create()
+        predictComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_predict)
         binding.viewModel = viewModel

@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.glen.daggerbasic.databinding.FragmentPredictAgeBinding
-import com.glen.daggerbasic.presentation.MyApplication
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -23,7 +22,7 @@ class PredictAgeFragment : Fragment() {
     private val viewModel: PredictAgeViewModel by viewModels { viewModelFactory }
 
     override fun onAttach(context: Context) {
-        (activity?.application as MyApplication).appComponent.inject(this)
+        (activity as PredictActivity).predictComponent.inject(this)
         super.onAttach(context)
     }
 
