@@ -1,18 +1,13 @@
 package com.glen.daggerbasic.di
 
 import com.glen.daggerbasic.presentation.loghistory.LogHistoryActivity
-import dagger.Binds
 import dagger.Module
-import dagger.android.AndroidInjector
-import dagger.multibindings.ClassKey
-import dagger.multibindings.IntoMap
+import dagger.android.ContributesAndroidInjector
 
-
-@Module(subcomponents = [PredictComponent::class, LogHistoryComponent::class])
+@Module(subcomponents = [PredictComponent::class])
 abstract class AppSubComponents {
 
-    @Binds
-    @IntoMap
-    @ClassKey(LogHistoryActivity::class)
-    abstract fun bindAndroidInjectorFactory(builder: LogHistoryComponent.Factory?): AndroidInjector.Factory<*>?
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [LogHistoryModule::class])
+    abstract fun logHistoryActivity(): LogHistoryActivity
 }
