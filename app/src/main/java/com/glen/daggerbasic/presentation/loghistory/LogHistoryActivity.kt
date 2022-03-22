@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glen.daggerbasic.R
 import com.glen.daggerbasic.databinding.ActivityLogHistoryBinding
-import com.glen.daggerbasic.presentation.MyApplication
+import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class LogHistoryActivity : AppCompatActivity() {
@@ -22,7 +22,7 @@ class LogHistoryActivity : AppCompatActivity() {
     private val viewModel: LogHistoryViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as MyApplication).appComponent.logHistoryComponent().create().inject(this)
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_log_history)
         binding.viewModel = viewModel

@@ -2,15 +2,12 @@ package com.glen.daggerbasic.di
 
 import com.glen.daggerbasic.presentation.loghistory.LogHistoryActivity
 import dagger.Subcomponent
+import dagger.android.AndroidInjector
 
 @ActivityScope
 @Subcomponent(modules = [LogHistoryModule::class])
-interface LogHistoryComponent {
+interface LogHistoryComponent : AndroidInjector<LogHistoryActivity> {
 
     @Subcomponent.Factory
-    interface Factory {
-        fun create(): LogHistoryComponent
-    }
-
-    fun inject(activity: LogHistoryActivity)
+    interface Factory : AndroidInjector.Factory<LogHistoryActivity>
 }
