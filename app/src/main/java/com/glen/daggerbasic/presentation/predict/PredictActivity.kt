@@ -8,13 +8,16 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.glen.daggerbasic.R
 import com.glen.daggerbasic.databinding.ActivityPredictBinding
-import com.glen.daggerbasic.di.PredictComponent
-import com.glen.daggerbasic.presentation.MyApplication
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class PredictActivity : AppCompatActivity() {
+class PredictActivity : AppCompatActivity(), HasAndroidInjector {
 
-    lateinit var predictComponent: PredictComponent
+    @Inject
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -22,8 +25,7 @@ class PredictActivity : AppCompatActivity() {
     private val viewModel: PredictViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        predictComponent = (application as MyApplication).appComponent.predictComponent().create()
-        predictComponent.inject(this)
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_predict)
         binding.viewModel = viewModel
@@ -34,5 +36,9 @@ class PredictActivity : AppCompatActivity() {
                 replace(R.id.fragment_container, PredictAgeFragment())
             }
         }
+    }
+
+    override fun androidInjector(): AndroidInjector<Any> {
+        return androidInjector
     }
 }

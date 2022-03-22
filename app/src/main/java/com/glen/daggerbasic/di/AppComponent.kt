@@ -25,7 +25,4 @@ interface AppComponent : AndroidInjector<MyApplication> {
     interface Factory {
         fun create(@BindsInstance context: Context): AppComponent
     }
-
-    // Type that can be retrieved from the graph
-    fun predictComponent(): PredictComponent.Factory
 }
