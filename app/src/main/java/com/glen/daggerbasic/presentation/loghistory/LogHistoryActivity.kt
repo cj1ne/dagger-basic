@@ -6,23 +6,19 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glen.daggerbasic.R
 import com.glen.daggerbasic.databinding.ActivityLogHistoryBinding
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LogHistoryActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: ActivityLogHistoryBinding
-    private val viewModel: LogHistoryViewModel by viewModels { viewModelFactory }
+    private val viewModel: LogHistoryViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_log_history)
         binding.viewModel = viewModel
