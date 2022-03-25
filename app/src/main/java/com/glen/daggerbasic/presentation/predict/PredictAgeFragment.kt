@@ -1,6 +1,5 @@
 package com.glen.daggerbasic.presentation.predict
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,24 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.glen.daggerbasic.databinding.FragmentPredictAgeBinding
-import dagger.android.support.AndroidSupportInjection
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import javax.inject.Inject
 
+@AndroidEntryPoint
 class PredictAgeFragment : Fragment() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var binding: FragmentPredictAgeBinding
-    private val viewModel: PredictAgeViewModel by viewModels { viewModelFactory }
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+    private val viewModel: PredictAgeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
